@@ -15,7 +15,7 @@ def generate_ellipsoid_clusters(distance, n_samples=100, cluster_std=0.5):
                                   [cluster_std * 0.8, cluster_std]])
     X1 = np.random.multivariate_normal(mean=[1, 1], cov=covariance_matrix, size=n_samples)
     y1 = np.zeros(n_samples)
-    X2 = np.random.multivariate_normal(mean=[1 + distance, 1 + distance], cov=covariance_matrix, size=n_samples)
+    X2 = np.random.multivariate_normal(mean=[1 - distance, 1 + distance], cov=covariance_matrix, size=n_samples)
     y2 = np.ones(n_samples)
     X = np.vstack((X1, X2))
     y = np.hstack((y1, y2))
@@ -120,7 +120,6 @@ def do_experiments(start, end, step_num):
     plt.title("Shift Distance vs Beta1 / Beta2 (Slope)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta1 / Beta2")
-    plt.ylim(-2, 0)
 
     plt.subplot(3, 3, 5)
     plt.plot(shift_distances, intercept_list, marker='o', color='blue')
